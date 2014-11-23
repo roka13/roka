@@ -23,7 +23,9 @@
 
     },
     "autoload": {
-        "psr-4": { "roka\\": "src/" },
-  
+        "psr-4": { "roka\\": "src/" 
+        }
+    }
+    
 }  
     
