@@ -5,9 +5,9 @@ namespace Roka\Dbtables;
  * A controller for building a table and admin related events.
  *
  */
-class DbtablesController  implements \Anax\DI\IInjectionAware
+class DbtablesController // implements \Anax\DI\IInjectionAware
 {
-    use \Anax\DI\TInjectable;
+ //   use \Anax\DI\TInjectable;
 
 /**
  * Initialize the controller.
@@ -44,6 +44,7 @@ public function initialize()
  * fieldnames
  */
  public function listAction(){
+     
 	if(isset($_POST['tblName']) && $_POST['tblName'] !="tblName" ){
 		$this->theme->setTitle("Visa tabell");
 		$sql1="SELECT * FROM ".$_POST['tblName'];
