@@ -1,5 +1,5 @@
 <?php
-namespace Roka\Dbtables;
+//namespace Roka\Dbtables;
 
 /**
  * HTML Form elements.
@@ -7,6 +7,42 @@ namespace Roka\Dbtables;
  */
 class DbTablesTest extends \PHPUnit_Framework_TestCase
 {
+public $dbTable;
+public static $db;
+
+
+public static function setUpBeforeClass(){
+
+	try {
+			$data= "../roka/test/roka2.db";
+		self::$db= new PDO("sqlite:$data",'ATTR_DEFAULT_FETCH_MODE');
+	//	self::$db= setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE);
+	//$dbase= self::$db;
+	// $this->dbTable =new \Roka\Dbtables\DbtablesController($dbase);
+	 
+		} catch(\Exception $e) {
+			throw new \PDOException("Could not connect to database");          
+		}
+    }
+
+    public static function tearDownAfterClass()
+    {
+       self::$db = NULL;
+    }
+
+
+public function setUp(){
+ 
+	//$this->dump('db');
+	$dbase=self::$db;
+	 $this->dbTable =new \Roka\Dbtables\DbtablesController($dbase);
+	}	
+
+
+function dump($array) 
+{
+    echo "<pre>" . htmlentities(print_r($array, 1)) . "</pre>";
+}
 
     /**
      * Test 
@@ -14,20 +50,47 @@ class DbTablesTest extends \PHPUnit_Framework_TestCase
      * @return void
      *
      */
-    public function testShowTable() 
+    public function testSelectTable() {
 	
-    {
-	    $_SESSION['tblname'] = 'comments';
-		 $dbtable = new \Roka\Dbtables\DbtablesController();
 
-		
-		try{
-		$dbtable->listAction();
+	   
+	$this->dbTable->selectAction();
+ 	 /*
+	try{
+	
+
 		}
 		catch(Exception $e){
-		}
+	}*/
 	}
-	// $cdby = new \Dlid\DbYuml\CDbYuml();
- 
+	
+	 /**
+     * Test 
+     *
+     * @return void
+     *
+     */
+    public function testListTable() {
+	
+	$_POST['tblName']= 'comments';
+	 $this->dbTable->listAction();
+
+	}
+	
+	 /**
+     * Test 
+     *
+     * @return void
+     *
+     */
+    public function testEmptyTable() {
+	
+	 $this->dbTable->emptyAction();
+	
+	}
+	
+	
+	
+
 	
 } // end of class
