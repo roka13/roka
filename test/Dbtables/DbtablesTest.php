@@ -1,5 +1,5 @@
 <?php
-//namespace Roka\Dbtables;
+namespace Roka\Dbtables;
 
 /**
  * HTML Form elements.
@@ -15,7 +15,7 @@ public static function setUpBeforeClass(){
 
 	try {
 			$data= "../roka/test/roka2.db";
-		self::$db= new PDO("sqlite:$data",'ATTR_DEFAULT_FETCH_MODE');
+		self::$db= new \PDO("sqlite:$data",'ATTR_DEFAULT_FETCH_MODE');
 	//	self::$db= setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE);
 	//$dbase= self::$db;
 	// $this->dbTable =new \Roka\Dbtables\DbtablesController($dbase);
