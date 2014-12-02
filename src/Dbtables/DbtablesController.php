@@ -86,12 +86,15 @@ public function selectAction(){
 	$stmt=$this->db->query($sql);
 	$res= $stmt->fetchAll();
 	$lista= $this->readContentToArray($res);
+
 /*	$this->views->add('Dbtables/maintbl', [
 		'title' =>'Mina Data-Tabeller',
 		'lista' =>$lista,
 	  ]);
 	  */
 }
+	/**
+
 	
 /**
  * Function to  build an array from an object
