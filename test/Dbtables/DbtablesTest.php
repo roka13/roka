@@ -9,6 +9,7 @@ class DbTablesTest extends \PHPUnit_Framework_TestCase
 {
 public $dbTable;
 public static $db;
+public $dBase;
 
 
 public static function setUpBeforeClass(){
@@ -34,8 +35,8 @@ public static function setUpBeforeClass(){
 public function setUp(){
  
 	//$this->dump('db');
-	$dbase=self::$db;
-	 $this->dbTable =new \Roka\Dbtables\DbtablesController($dbase);
+	$dBase=self::$db;
+	 $this->dbTable =new \Roka\Dbtables\DbtablesController($dBase);
 	}	
 
 
@@ -68,7 +69,7 @@ public function setUp(){
      */
     public function testListTable() {
 	
-	$_POST['tblName']= 'comments';
+	$_POST['tblName']= 'jonte5';
 	 $this->dbTable->listAction();
 
 	}
@@ -85,8 +86,43 @@ public function setUp(){
 	
 	}
 	
+	 /**
+     * Test 
+     *
+     * @return void
+     *
+     */
+    public function testCreateReadDb() {
+		$dBase=self::$db;
 	
+		
+	$sql="DROP TABLE IF EXISTS 'test'";
+	$stmt=$dBase->exec($sql);
 	
+	$sql="CREATE TABLE test(
+		id integer primary key ,
+		namn varchar(10),
+		yrke varchar(10),
+		betyg varchar(3)
+	)";
+	$stmt=$dBase->exec($sql);
+	
+	$values =array(5,'jonte','sotare','aaa');
+	$sql="INSERT INTO test VALUES( 5,'jonte','sotare','aaa')";
+	$stmt=$dBase->exec($sql);
+	
+	$sql="SELECT * FROM test";
+	$stmt=$dBase->query($sql);
+	$res=$stmt->fetchAll();
 
+	$answer=array();
+		foreach ( $res as $val){ 
+			$answer[] =$val[0];
+			$answer[] =$val[1];
+			$answer[] =$val[2];
+			$answer[] =$val[3];
+	    }		
+	 $this->assertEquals($values,$answer,' not equal');
+	}
 	
 } // end of class
