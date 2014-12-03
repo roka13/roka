@@ -33,69 +33,19 @@ public static function setUpBeforeClass(){
 
 
 public function setUp(){
- 
-	//$this->dump('db');
 	$dBase=self::$db;
 	 $this->dbTable =new \Roka\Dbtables\DbtablesController($dBase);
 	}	
 
-
-
-    /**
-     * Test 
-     *
-     * @return void
-     *
-     */
-    public function testSelectTable() {
-	
-
-	   
-	$this->dbTable->selectAction();
- 	 /*
-	try{
-	
-
-		}
-		catch(Exception $e){
-	}*/
-	}
-	
 	 /**
-     * Test 
-     *
-     * @return void
-     *
-     */
-    public function testListTable() {
-	
-	$_POST['tblName']= 'jonte5';
-	 $this->dbTable->listAction();
-
-	}
-	
-	 /**
-     * Test 
-     *
-     * @return void
-     *
-     */
-    public function testEmptyTable() {
-	
-	 $this->dbTable->emptyAction();
-	
-	}
-	
-	 /**
-     * Test 
-     *
+     * Test Create new table, populate it
+     * with testdata and fetch it to compare
      * @return void
      *
      */
     public function testCreateReadDb() {
 		$dBase=self::$db;
-	
-		
+
 	$sql="DROP TABLE IF EXISTS 'test'";
 	$stmt=$dBase->exec($sql);
 	
@@ -125,4 +75,41 @@ public function setUp(){
 	 $this->assertEquals($values,$answer,' not equal');
 	}
 	
+
+    /**
+     * Test function SelectAction
+     *
+     * @return void
+     *
+     */
+    public function testSelectTable() {
+	$this->dbTable->selectAction();
+	}
+	
+	 /**
+     * Test function listAction
+     *
+     * @return void
+     *
+     */
+    public function testListTable() {
+	
+	$_POST['tblName']= 'test';
+	 $this->dbTable->listAction();
+
+	}
+	
+	 /**
+     * Test function emptyTable
+     *
+     * @return void
+     *
+     */
+    public function testEmptyTable() {
+	
+	 $this->dbTable->emptyAction();
+	
+	}
+	
+
 } // end of class
