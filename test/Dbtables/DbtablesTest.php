@@ -47,7 +47,7 @@ public function setUp(){
 		$dBase=self::$db;
 
 	$sql="DROP TABLE IF EXISTS 'test'";
-	$stmt=$dBase->exec($sql);
+	$dBase->exec($sql);
 	
 	$sql="CREATE TABLE test(
 		id integer primary key ,
