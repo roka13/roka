@@ -55,11 +55,11 @@ public function setUp(){
 		yrke varchar(10),
 		betyg varchar(3)
 	)";
-	$stmt=$dBase->exec($sql);
+	$dBase->exec($sql);
 	
 	$values =array(5,'jonte','sotare','aaa');
 	$sql="INSERT INTO test VALUES( 5,'jonte','sotare','aaa')";
-	$stmt=$dBase->exec($sql);
+	$dBase->exec($sql);
 	
 	$sql="SELECT * FROM test";
 	$stmt=$dBase->query($sql);
